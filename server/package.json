@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Federal Government License",
+  "dependencies": {
+    "body-parser": "latest",
+    "bookshelf": "latest",
+    "cookie-parser": "latest",
+    "cookie-session": "latest",
+    "cors": "^2.8.5",
+    "dotenv": "latest",
+    "express": "latest",
+    "express-session": "latest",
+    "knex": "latest",
+    "passport": "latest",
+    "passport-google-oauth20": "latest",
+    "pg": "latest",
+    "sequelize": "latest",
+    "typeface-roboto": "latest"
+  }
+}

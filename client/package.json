@@ -1,0 +1,55 @@
+{
+  "name": "accessibilitylab3",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/Lab4",
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "^4.2.1",
+    "@reach/router": "latest",
+    "@uiw/react-codemirror": "latest",
+    "bootstrap": "^4.3.1",
+    "classnames": "latest",
+    "cli-engine": "^4.7.6",
+    "clsx": "^1.0.4",
+    "eslint-config-standard": "^13.0.1",
+    "immutability-helper": "latest",
+    "node-sass": "latest",
+    "prismjs": "latest",
+    "react": "^16.12.0",
+    "react-autosize-textarea": "latest",
+    "react-color": "latest",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
+    "react-redux": "latest",
+    "react-spinners": "latest",
+    "reactstrap": "^8.1.1",
+    "redux": "latest",
+    "redux-saga": "latest",
+    "victory": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start && date && echo 'Options -MultiViews\nRewriteEngine On\nRewriteCond %{REQUEST_FILENAME} !-f\nRewriteRule ^ index.html [QSA,L]\n' >> ./build/.htaccess",
+    "build": "react-scripts build && date && echo 'Options -MultiViews\nRewriteEngine On\nRewriteCond %{REQUEST_FILENAME} !-f\nRewriteRule ^ index.html [QSA,L]\n' >> ./build/.htaccess",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-google": "^0.13.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.6.1",
+    "prop-types": "^15.7.2",
+    "react-scripts": "latest",
+    "redux-devtools": "latest"
+  }
+}
