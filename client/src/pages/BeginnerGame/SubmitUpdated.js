@@ -30,11 +30,9 @@ class SubmitUpdated extends Component {
     wiggle = (e) => {
         let distX =this.calculateDistanceX(this.myDiv, e.screenX);
         let distY =this.calculateDistanceY(this.myDiv, e.screenY);
-        let left = 50/(distX);
-        let top = 50/(distY);
-        console.log(distX);
-        console.log(distX);
-        this.setState({left: left+"px", top:top +"px"})
+        let right = -distX/2 ;
+        let top = distY/2;
+        this.setState({right: right+"px", top:top +"px"})
     };
 
     calculateDistanceX(elem, mouseX) {
@@ -47,9 +45,9 @@ class SubmitUpdated extends Component {
     render() {
         const {
             user,
-            state,
-            plays
+            state
         } = this.props;
+        const plays = 4;
         const instructions = "Click the start button";
         return (
             <Fragment>

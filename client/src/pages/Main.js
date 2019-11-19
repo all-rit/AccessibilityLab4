@@ -35,7 +35,7 @@ class Main extends Component {
         return (
             <Fragment>
                 <div>
-                    <Header state={state} user={user} plays={plays}/>
+                    <Header state={state} user={user} plays={0}/>
                 </div>
                 <div>
                     <h1 className="app__name">Dexterity Lab</h1>

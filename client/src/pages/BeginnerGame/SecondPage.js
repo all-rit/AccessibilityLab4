@@ -31,9 +31,9 @@ class FirstPage extends Component {
     render() {
         const {
             user,
-            state,
-            plays
+            state
         } = this.props;
+        const plays = 4;
         const buttonStyle = {marginRight: "10px", marginLeft: "10px"};
         return (
             <Fragment>
@@ -42,7 +42,7 @@ class FirstPage extends Component {
                 </div>
                 <div>
                     <h1 className="app__name">Was That Difficult?</h1>
-                    <h2 className="app__instructions__small">People with mobile dexterity disabilities have a hard time clicking small buttons. To make sure your software is accessible by everyone, ensure that buttons follow the WGAC 2.55 Target Guideline. Buttons must be a minimum of 44 x44 px
+                    <h2 className="app__instructions__small">People with mobile dexterity disabilities have a hard time clicking small buttons. To make sure your software is accessible by everyone, ensure that buttons follow the WGAC 2.55 Target Guideline. Buttons must be a minimum of 44 x 44 px
 
                         Go ahead and make the changes to the code by clicking “continue”.</h2>
 

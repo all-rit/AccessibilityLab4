@@ -30,10 +30,8 @@ class FirstPage extends Component {
     wiggle = (e) => {
         let distX =this.calculateDistanceX(this.myDiv, e.screenX);
         let distY =this.calculateDistanceY(this.myDiv, e.screenY);
-        let right = 50/(distX);
-        let top = 50/(distY);
-        console.log(distX);
-        console.log(distX);
+        let right = -distX/2 ;
+        let top = distY/2;
         this.setState({right: right+"px", top:top +"px"})
     };
 
@@ -54,12 +52,12 @@ class FirstPage extends Component {
         return (
             <Fragment>
                 <div>
-                    <Header state={state} user={user} plays={plays}/>
+                    <Header state={state} user={user} plays={1}/>
                 </div>
                 <div>
                     <h1 className="app__name">Dexterity Lab</h1>
                     <AppInstructions instructions={instructions}/>
-                    <div style={{width:"200px", height:"200px", margin:"auto", paddingTop:"30px"}} onMouseMove={e =>this.wiggle(e)}>
+                    <div style={{width:"300px", height:"300px", margin:"auto", paddingTop:"50px"}} onMouseMove={e =>this.wiggle(e)}>
                     <Button  ref = {c => this.myDiv = c} href="/second" component={Link} variant={"contained"} color={"primary"}
                             style={this.state} className="app__wiggle">
                         Start</Button>

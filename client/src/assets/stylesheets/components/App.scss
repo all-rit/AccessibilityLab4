@@ -10,14 +10,26 @@
     font-size: 2rem;
     margin-top: 3rem;
     margin-bottom: 1rem;
-    &__small{
+
+    &__small {
       max-width: 60rem;
-      margin:auto;
+      margin: auto;
       margin-top: 2rem;
-      margin-bottom:2rem;
+      margin-bottom: 2rem;
     }
   }
 
+  &__instructions2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__instructions3 {
+    font-size: 2rem;
+    font-weight: bold;
+    color:red;
+    margin-bottom: 1rem;
+  }
 }
 .formComp{
   text-align: left;

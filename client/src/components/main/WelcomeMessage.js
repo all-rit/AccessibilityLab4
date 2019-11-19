@@ -14,9 +14,9 @@ const mapDispatchToProps = (dispatch) => ({
 class WelcomeMessage extends Component {
 
     render() {
-        const {user} = this.props;
+        const {user, loginEnabled} = this.props;
         if (user === null || user.firstname === null) {
-            return <LoginButton enabled={true}/>;
+            return <LoginButton enabled={loginEnabled}/>;
         }
         else {
             return <Signout user={user.firstname}/>;

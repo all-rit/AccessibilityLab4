@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 class Header extends Component {
     render() {
         const {state, user, plays} = this.props;
-        const loginEnabled = !(plays > 0 || (plays === 0 && state !== GAME_IDLE));
+        const loginEnabled = (plays === 0);
         const buttonStyle = {marginTop: "5px"};
         const appBarStyle = {flexGrow: "1"};
         return (
@@ -24,12 +24,12 @@ class Header extends Component {
                         spacing={10}
                     >
                         <Grid item>
-                        <Typography variant={"h4"} color={"inherit"}>
+                        <Typography variant={"h4"} color={'inherit'} >
                             Accessibility Learning Lab 4
                         </Typography>
                         </Grid>
                         <Grid item>
-                        <WelcomeMessage user={user}/>
+                        <WelcomeMessage user={user} loginEnabled={loginEnabled}/>
                         </Grid>
                     </Grid>
                 </Toolbar>

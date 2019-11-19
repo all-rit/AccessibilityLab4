@@ -207,11 +207,11 @@ class CodeChange extends Component {
     min-width:`}</code> <input type={"text"} id="first" value={this.state.textValue} placeholder="20"
                                   onChange={this.handleChange}
                                   aria-label={"Please set min width to 40px"}/>
-                                  <code className="language-css">{` px;
+                                  <code className="language-css">{` px; /*Set to atleast 44px*/
     min-height:`}</code> <input type={"text"} id="second" value={this.state.textValue1} placeholder="17"
                                   onChange={this.handleChange1}
                                   aria-label={"Please set min height to 40px"}/>
-                                  <code className="language-css">{` px;
+                                  <code className="language-css">{` px; /*Set to atleast 44px*/
     fontSize: 10px;
 }
 `}

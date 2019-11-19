@@ -3,7 +3,9 @@ import React, {Component} from 'react';
 class AppInstructions extends Component {
 
     render() {
-        return <p className="app__instructions">{this.props.instructions}</p>;
+        return <div><p className="app__instructions">{this.props.instructions}</p>
+                <p className={this.props.class}>{this.props.instructions2}</p>
+        </div>;
     }
 }
 

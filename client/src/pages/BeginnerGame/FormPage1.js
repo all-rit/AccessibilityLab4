@@ -29,23 +29,25 @@ const mapDispatchToProps = (dispatch) => {
 
 
 class FirstPage extends Component {
-
+    state = {class: 'app__instructions2'};
+    callbackFunction = (childData) => {
+        this.setState({class:"app__instructions3"})
+    };
     render() {
         const {
-            user,
-            state,
-            plays
+            user,state
         } = this.props;
-        const instructions = "Complete the form below. Use tab to go next, and shift+tab to go back";
+        const instructions = "Complete the form below. Use tab to go next, and shift+tab to go back.";
+        const instructions2 = "Do not use the mouse!";
         const url = "/FormPage2";
         return (
             <Fragment>
                 <div>
-                    <Header state={state} user={user} plays={plays}/>
+                    <Header state={state} user={user} plays={3}/>
                 </div>
                 <ExtraNav/>
-                <AppInstructions instructions={instructions}/>
-                <FormComp url={url} />
+                <AppInstructions class = {this.state.class} instructions2={instructions2} instructions={instructions}/>
+                <FormComp url={url} parentCallback = {this.callbackFunction} />
 
             </Fragment>
         );
