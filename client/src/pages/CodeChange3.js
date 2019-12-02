@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import CodeUpdateHeader from "../../components/main/CodeUpdateHeader";
+import CodeUpdateHeader from "../components/main/CodeUpdateHeader";
 import Prism from "prismjs";
 import {navigate} from "@reach/router";
 import Button from "@material-ui/core/Button";
-import "../../assets/stylesheets/prism.css";
+import "../assets/stylesheets/prism.css";
 import {Paper} from "@material-ui/core";
 import Snackbar from "@material-ui/core/Snackbar";
 import CheckCircleIcon from "@material-ui/core/SvgIcon/SvgIcon";
@@ -88,10 +88,8 @@ class CodeChange extends Component {
 
     constructor(props) {
         super(props);
-        document.body.style = 'background: white';
-        this.state = {textValue: '', textValue1: '', textValue2: '', textValue3: '', snackBarOpen: false};
+        this.state = {textValue: '',  textValue2: '', snackBarOpen: false};
         this.handleChange = this.handleChange.bind(this);
-        this.handleChange1 = this.handleChange1.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClose = this.handleClose.bind(this);
         CodeChange.renderButton = CodeChange.renderButton.bind(this);
@@ -100,8 +98,7 @@ class CodeChange extends Component {
         } else {
             window.location.state = {
                 endButtonEnabled: true,
-                width: window.location.state.width,
-                height: window.location.state.height,
+                role: window.location.state.role,
                 burgerAltValue: window.location.state.burgerAltValue,
             };
         }
@@ -109,13 +106,11 @@ class CodeChange extends Component {
 
     componentDidMount() {
         Prism.highlightAll();
-        if (window.location.state.height !== undefined && window.location.state.width !== undefined) {
+        if (window.location.state.role !== undefined ) {
             const el0 = document.getElementById("first");
-            el0.value = window.location.state.width;
+            el0.value = window.location.state.role;
             CodeChange.doEvent(el0, 'input');
-            const el1 = document.getElementById("second");
-            el1.value = window.location.state.height;
-            CodeChange.doEvent(el1, 'input');
+
 
         }
     }
@@ -128,12 +123,7 @@ class CodeChange extends Component {
 
     }
 
-    handleChange1(event) {
-        this.setState({textValue1: event.target.value}, () => {
-            console.log('handled change value: ' + this.state.textValue1);
-            Prism.highlightAll();
-        });
-    }
+
 
 
     handleClose(event, reason) {
@@ -149,27 +139,23 @@ class CodeChange extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log('Width updated as: ' + this.state.textValue);
-        console.log('Height updated as: ' + this.state.textValue1);
-        if (window.location.state.width != null &&
-            window.location.state.height != null &&
+        console.log('Role updated as: ' + this.state.textValue);
+        if (window.location.state.role != null &&
             window.location.state.endButtonEnabled != null) {
             window.location.state = {
-                width: this.state.textValue,
-                height: this.state.textValue1,
+                role: this.state.textValue,
                 endButtonEnabled: true
             };
-            navigate('/SubmitUpdated');
-        } else if (this.state.textValue === '' || this.state.textValue1 === '') {
+            navigate('/FormPage2Updated');
+        } else if (this.state.textValue === '' ) {
             this.setState({snackBarOpen: true});
         } else {
             window.location.state = {
-                width: this.state.textValue,
-                height: this.state.textValue1,
+                role: this.state.textValue,
                 burgerAltValue: this.state.textValue2,
                 endButtonEnabled: true
             };
-            navigate('/SubmitUpdated');
+            navigate('/FormPage2Updated');
         }
         Prism.highlightAll();
     }
@@ -178,7 +164,7 @@ class CodeChange extends Component {
         const buttonEnabled = window.location.state.endButtonEnabled;
         const buttonStyle = {marginLeft: '10px'};
         if (buttonEnabled) {
-            return (<Button href={"/SubmitUpdated"} aria-label={"End Activity"}
+            return (<Button href={"/FormPage2Updated"} aria-label={"End Activity"}
                             variant={"contained"} color={"secondary"} style={buttonStyle}>
                 End Activity
             </Button>);
@@ -199,24 +185,35 @@ class CodeChange extends Component {
                 <form onSubmit={this.handleSubmit} noValidate autoComplete={"off"}>
                     <Paper style={paperStyle}>
 				<pre>
-                    <code className="language-css">
-					  {`
-.button {
-    marginRight: 10px;
-    marginLeft: 10px;
-    min-width:`}</code> <input type={"text"} id="first" value={this.state.textValue} placeholder="20"
-                                  onChange={this.handleChange}
-                                  aria-label={"Please set min width to 40px"}/>
-                                  <code className="language-css">{` px; /*Set to atleast 44px*/
-    min-height:`}</code> <input type={"text"} id="second" value={this.state.textValue1} placeholder="17"
-                                  onChange={this.handleChange1}
-                                  aria-label={"Please set min height to 40px"}/>
-                                  <code className="language-css">{` px; /*Set to atleast 44px*/
-    fontSize: 10px;
-}
-`}
+                    <code className="language-html">
+					  {`<form>
+    <div>
+        <label>Favorite Animal</label>
+        <input>
+    </div>
+    <div>
+        <label>Favorite Color</label>
+        <div>
+            <span tabindex= `}</code>
+                    <input type={"text"} id="first"  value={this.state.textValue} placeholder=""
+                           onChange={this.handleChange}
+                           aria-label={"set tab-index to 0 so tooltip can be keyboard accessible"}/>
+                   <code className="language-html">
+					  {`>hint</span> /* set tab-index to 0 so tooltip can be keyboard accessible*/
+        </div>
 
-  					</code>
+        <input>
+    </div>
+    <div>
+        <label>Favorite Candy</label>
+        <input>
+    </div>
+    <div>
+        <label>Favorite City</label>
+        <input>
+    </div>
+`}
+                    </code>
 				</pre>
                     </Paper>
                     <br/>

@@ -20,7 +20,7 @@ const handleSignout = (actions) => {
         headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With'}
     })
         .then(res => res.text())
-        .then(() => window.location.href = 'http://all.rit.edu/Lab4/')
+        .then(() => window.location.reload())
         .then(() => {
             actions.updateUser(null);
             console.log('user updated');

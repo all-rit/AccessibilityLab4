@@ -5,11 +5,11 @@ import {Link} from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Header from "../../components/main/Header";
+import Header from "../components/main/Header";
 import Card from '@material-ui/core/Card';
-import {actions as appActions} from '../../reducers/AppReducer';
-import AppInstructions from '../../components/main/AppInstructions'
-import StickyFooter from "../../components/helpers/StickyFooter";
+import {actions as appActions} from '../reducers/AppReducer';
+import AppInstructions from '../components/main/AppInstructions'
+import StickyFooter from "../components/helpers/StickyFooter";
 
 const mapStateToProps = (state) => {
     return {
