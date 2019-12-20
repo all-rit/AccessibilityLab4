@@ -43,7 +43,7 @@ class FirstPage extends Component {
         } = this.props;
         const instructions = "Complete the form below. Use tab to go next, and shift+tab to go back.";
         const instructions2 = "Do not use the mouse!";
-        const url = "/FormPage2";
+        const url = process.env.PUBLIC_URL+"/FormPage2";
         return (
             <Fragment>
 

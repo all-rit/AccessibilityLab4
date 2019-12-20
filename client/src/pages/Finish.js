@@ -42,7 +42,7 @@ class SixthPage extends Component {
                 </div>
                 <div>
                     <h2 className="app__instructions__small">Congratulations on finishing the module!</h2>
-                    <Button href="/" component={Link} variant={"contained"} color={"primary"}
+                    <Button href={process.env.PUBLIC_URL} component={Link} variant={"contained"} color={"primary"}
                             style={buttonStyle}>
                         Home</Button>
                 </div>

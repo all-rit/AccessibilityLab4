@@ -49,7 +49,7 @@ class App extends Component {
                 <SixthPage path={'/SixthPage'}/>
                 <Form1 path={'/FormPage1'}/>
                 <FormUpdated path={'/FormUpdated'}/>
-                <FormPage2 path={'FormPage2'}/>
+                <FormPage2 path={'/FormPage2'}/>
                 <TenthPage path={'/TenthPage'}/>
                 <CodeChange3 path={'/CodeChange3'}/>
                 <FormPage2Updated path={'/FormPage2Updated'}/>
