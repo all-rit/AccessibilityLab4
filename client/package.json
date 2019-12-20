@@ -1,5 +1,5 @@
 {
-  "name": "accessibilitylab3",
+  "name": "accessibilitylab4",
   "version": "0.1.0",
   "private": true,
   "homepage": "/Lab4",
@@ -12,7 +12,6 @@
     "classnames": "latest",
     "cli-engine": "^4.7.6",
     "clsx": "^1.0.4",
-    "eslint-config-standard": "^13.0.1",
     "immutability-helper": "latest",
     "node-sass": "latest",
     "prismjs": "latest",

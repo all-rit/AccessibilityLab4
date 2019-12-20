@@ -146,7 +146,7 @@ class CodeChange extends Component {
                 role: this.state.textValue,
                 endButtonEnabled: true
             };
-            navigate('/FormUpdated');
+            navigate(process.env.PUBLIC_URL+'/FormUpdated');
         } else if (this.state.textValue === '' ) {
             this.setState({snackBarOpen: true});
         } else {
@@ -155,7 +155,7 @@ class CodeChange extends Component {
                 burgerAltValue: this.state.textValue2,
                 endButtonEnabled: true
             };
-            navigate('/FormUpdated');
+            navigate(process.env.PUBLIC_URL+'/FormUpdated');
         }
         Prism.highlightAll();
     }
@@ -164,7 +164,7 @@ class CodeChange extends Component {
         const buttonEnabled = window.location.state.endButtonEnabled;
         const buttonStyle = {marginLeft: '10px'};
         if (buttonEnabled) {
-            return (<Button href={"/FormUpdated"} aria-label={"End Activity"}
+            return (<Button href={process.env.PUBLIC_URL+"/FormUpdated"} aria-label={"End Activity"}
                             variant={"contained"} color={"secondary"} style={buttonStyle}>
                 End Activity
             </Button>);
