@@ -2,20 +2,20 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Router} from '@reach/router';
 import './assets/stylesheets/main.scss';
-import CodeChange2 from './pages/CodeChange2';
+import CodeChangeBlocks from './pages/CodeChangeBlocks';
 import {actions} from './reducers/AppReducer';
-import First from './pages/FirstPage';
-import Form1 from './pages/FormPage1';
-import SixthPage from './pages/SixthPage'
-import Second from './pages/SecondPage';
+import SmallTarget from './pages/SmallTarget';
+import FormSkipToMainBroken from './pages/FormSkipToMainBroken';
+import BypassBlocksGuideline from './pages/BypassBlocksGuideline'
+import TargetGuideline from './pages/TargetGuideline';
 import Main from './pages/Main';
-import CodeChange from './pages/CodeChange';
+import CodeChangeTarget from './pages/CodeChangeTarget';
 import SubmitUpdated from './pages/SubmitUpdated';
-import FormUpdated from "./pages/FormUpdated";
-import FormPage2 from "./pages/FormPage2";
-import TenthPage from "./pages/TenthPage"
-import CodeChange3 from './pages/CodeChange3';
-import FormPage2Updated from "./pages/FormPage2Updated";
+import FormSkipToMainFixed from "./pages/FormSkipToMainFixed";
+import FormHintInaccessible from "./pages/FormHintInaccessible";
+import AccessibleGuideline from "./pages/AccessibleGuideline"
+import CodeChangeAccessible from './pages/CodeChangeAccessible';
+import FormHintAccessible from "./pages/FormHintAccessible";
 import Finish from './pages/Finish';
 
 const mapStateToProps = (state) => ({
@@ -41,18 +41,18 @@ class App extends Component {
         return (
             <Router basepath={process.env.PUBLIC_URL} className="app">
                 <Main path="/"/>
-                <First path="/first"/>
-                <Second path="/second"/>
+                <SmallTarget path="/SmallTarget"/>
+                <TargetGuideline path="/TargetGuideline"/>
                 <SubmitUpdated path="/SubmitUpdated"/>
-                <CodeChange path={'/CodeChange'}/>
-                <CodeChange2 path={'/CodeChange2'}/>
-                <SixthPage path={'/SixthPage'}/>
-                <Form1 path={'/FormPage1'}/>
-                <FormUpdated path={'/FormUpdated'}/>
-                <FormPage2 path={'FormPage2'}/>
-                <TenthPage path={'/TenthPage'}/>
-                <CodeChange3 path={'/CodeChange3'}/>
-                <FormPage2Updated path={'/FormPage2Updated'}/>
+                <CodeChangeTarget path={'/CodeChangeTarget'}/>
+                <CodeChangeBlocks path={'/CodeChangeBlocks'}/>
+                <BypassBlocksGuideline path={'/BypassBlocksGuideline'}/>
+                <FormSkipToMainBroken path={'/FormSkipToMainBroken'}/>
+                <FormSkipToMainFixed path={'/FormSkipToMainFixed'}/>
+                <FormHintInaccessible path={'FormHintInaccessible'}/>
+                <AccessibleGuideline path={'/AccessibleGuideline'}/>
+                <CodeChangeAccessible path={'/CodeChangeAccessible'}/>
+                <FormHintAccessible path={'/FormHintAccessible'}/>
                 <Finish path={'/Finish'}/>
             </Router>
         );

@@ -14,7 +14,7 @@ class FormComp extends Component {
     };
     change = e =>{
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value.toLowerCase()
         });
     };
     focusElem = (e) => {
@@ -22,14 +22,14 @@ class FormComp extends Component {
         this.props.parentCallback('error');
     };
 
+
     form_sub=e=>{
         if(this.props.rule){
             if (this.state.animal === "" || this.state.city === "" || this.state.candy === "" || this.state.color === "") {
                 this.setState({show: true, alert: "Fill Out Form Completely"});}
-            else if (this.state.animal === "" || this.state.city === "" || this.state.color !== ("Violet") || this.state.candy === "" || this.state.color === "") {
+        else if (this.state.animal === "" || this.state.city === "" || this.state.color !== ("violet") || this.state.candy === "" || this.state.color === "") {
                 console.log(this.state.color);
-                this.setState({show:true, alert: "Color is invalid"});
-
+                this.setState({show:true, alert: "Color doesn't meet 'hint' criteria"});
             } else {
                 window.location.href = this.props.url;
             }
@@ -49,20 +49,20 @@ class FormComp extends Component {
                 </div>
             <Form className="formComp" >
                 <FormGroup>
-                    <Label for="animal">Favorite Animal</Label>
-                    <Input type="text" name="animal" id="main" placeholder="Tiger" onChange={e=>this.change(e)}  />
+                    <Label for="animal">Favorite Animal e.g. Tiger</Label>
+                    <Input type="text" name="animal" id="main" onChange={e=>this.change(e)} value={this.state.animal} />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="color">Favorite Color {this.props.rule && <Toolitip tab={this.props.tab}/>}</Label>
-                    <Input type="text" name="color" id="color" placeholder="Blue" onChange={e=>this.change(e)}   />
+                    <Label for="color">Favorite Color e.g. Blue {this.props.rule && <Toolitip tab={this.props.tab}/>}</Label>
+                    <Input type="text" name="color" id="color" onChange={e=>this.change(e)} value={this.state.color}  />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="candy">Favorite Candy</Label>
-                    <Input type="text" name="candy" id="candy" placeholder="Skittles" onChange={e=>this.change(e)} />
+                    <Label for="candy">Favorite Candy e.g. Skittles</Label>
+                    <Input type="text" name="candy" id="candy"  onChange={e=>this.change(e)} value={this.state.candy} />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="city">Favorite City</Label>
-                    <Input type="text" name="city" id="city" placeholder="NYC" onChange={e=>this.change(e)}  />
+                    <Label for="city">Favorite City e.g. NYC</Label>
+                    <Input type="text" name="city" id="city" onChange={e=>this.change(e)} value={this.state.city} />
                 </FormGroup>
                 { this.state.show
                     ? <Alert color="danger" >

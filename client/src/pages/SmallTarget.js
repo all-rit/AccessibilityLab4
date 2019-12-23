@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-class FirstPage extends Component {
+class SmallTarget extends Component {
     style = {marginRight: 10, marginLeft: 10, width:20, height:17, fontSize: 10};
     state = {marginRight: this.style.marginRight+"px", marginLeft: this.style.marginLeft +"px", width:this.style.width +"px", height:this.style.height +"px", fontSize: this.style.fontSize +"px", top:"px", left:"px"};
     wiggle = (e) => {
@@ -58,7 +58,7 @@ class FirstPage extends Component {
                     <h1 className="app__name">Dexterity Lab</h1>
                     <AppInstructions instructions={instructions}/>
                     <div style={{width:"300px", height:"300px", margin:"auto", paddingTop:"50px"}} onMouseMove={e =>this.wiggle(e)}>
-                    <Button  ref = {c => this.myDiv = c} href="/second" component={Link} variant={"contained"} color={"primary"}
+                    <Button  ref = {c => this.myDiv = c} href="/TargetGuideline" component={Link} variant={"contained"} color={"primary"}
                             style={this.state} className="app__wiggle">
                         Start</Button>
                     </div>
@@ -69,4 +69,4 @@ class FirstPage extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FirstPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SmallTarget);

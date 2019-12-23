@@ -25,7 +25,6 @@ const variantIcon = {
     info: InfoIcon,
 };
 
-
 function MySnackbarContentWrapper(props) {
 
 
@@ -84,33 +83,33 @@ MySnackbarContentWrapper.propTypes = {
     variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
 };
 
-class CodeChange extends Component {
+class CodeChangeAccessible extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {textValue: '',  textValue2: '', snackBarOpen: false};
+        this.state = {textValue: '', textValue1: '', snackBarOpen: false, message:"Please type code before updating code!"};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        CodeChange.renderButton = CodeChange.renderButton.bind(this);
-        if (window.location.state === undefined) {
-            window.location.state = {endButtonEnabled: false}
-        } else {
+        if (window.location.state !== undefined) {
+            this.state = {textValue: window.location.state.hint, snackBarOpen:false, message: "Please type code before updating code!"};
             window.location.state = {
-                endButtonEnabled: true,
-                role: window.location.state.role,
-                burgerAltValue: window.location.state.burgerAltValue,
+                hint: window.location.state.hint
+            };
+        }
+        else{
+            window.location.state = {
+                hint: null
             };
         }
     }
 
     componentDidMount() {
         Prism.highlightAll();
-        if (window.location.state.role !== undefined ) {
+        if (window.location.state.hint !== undefined ) {
             const el0 = document.getElementById("first");
-            el0.value = window.location.state.role;
-            CodeChange.doEvent(el0, 'input');
-
+            el0.value = window.location.state.hint;
+            CodeChangeAccessible.doEvent(el0, 'input');
 
         }
     }
@@ -122,7 +121,6 @@ class CodeChange extends Component {
         });
 
     }
-
 
 
 
@@ -139,37 +137,27 @@ class CodeChange extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log('Role updated as: ' + this.state.textValue);
-        if (window.location.state.role != null &&
-            window.location.state.endButtonEnabled != null) {
+        console.log('hint updated as: ' + this.state.textValue);
+        if (this.state.textValue === '') {
+            this.setState({message: "Please type code before updating code!", snackBarOpen: true});
+        }
+        else if (parseInt(this.state.textValue) !== 0) {
+            this.setState({message: "Please enter value 0", snackBarOpen: true});
+        }
+        else if(!(/^\d+$/.test(this.state.textValue))){
+            this.setState({message: "Please enter numeric value", snackBarOpen: true});
+
+        }
+        else {
             window.location.state = {
-                role: this.state.textValue,
-                endButtonEnabled: true
+                hint: this.state.textValue
             };
-            navigate('/FormUpdated');
-        } else if (this.state.textValue === '' ) {
-            this.setState({snackBarOpen: true});
-        } else {
-            window.location.state = {
-                role: this.state.textValue,
-                burgerAltValue: this.state.textValue2,
-                endButtonEnabled: true
-            };
-            navigate('/FormUpdated');
+            navigate('/FormHintAccessible');
         }
         Prism.highlightAll();
     }
 
-    static renderButton() {
-        const buttonEnabled = window.location.state.endButtonEnabled;
-        const buttonStyle = {marginLeft: '10px'};
-        if (buttonEnabled) {
-            return (<Button href={"/FormUpdated"} aria-label={"End Activity"}
-                            variant={"contained"} color={"secondary"} style={buttonStyle}>
-                End Activity
-            </Button>);
-        }
-    }
+
 
     static doEvent(obj, event) {
         const eventInit = new Event(event, {target: obj, bubbles: true});
@@ -182,28 +170,43 @@ class CodeChange extends Component {
             <div>
                 <CodeUpdateHeader heading={"Make Code Changes"} justifyAlignment={"space-between"}
                                   helpMessage={"#Placeholder"}/>
+                <div className="app__instructions__small2" >
+                    <h2>
+                        Intent
+                    </h2>
+                    The intent of this code change is to ensure that, wherever possible, content can be operated through a keyboard or keyboard interface. Tabindex="-1" prevents access through keyboard navigation. Tabindex="2" (positive non-zero) means focusable in sequential keyboard navigation, with its order defined by the value of the number. Tabindex="0" means that the element should be focusable in sequential keyboard navigation.
+                </div>
                 <form onSubmit={this.handleSubmit} noValidate autoComplete={"off"}>
                     <Paper style={paperStyle}>
 				<pre>
-                      <code className="language-html">
-					  {`/* add the following in the input: <a class="skip-main" href="#main">Skip to main content</a>*/
-`}
-                     </code>
-                    <input type={"text"} id="first" style={{width: "600px"}} value={this.state.textValue} placeholder=""
-                           onChange={this.handleChange}
-                           aria-label={"add the following: <a class=\"skip-main\" href=\"#main\">Skip to main content</a>"}/>
-
                     <code className="language-html">
-					  {`
-<div>
-    <header>...</header>
-</div>
-<div>
-    <nav>...</nav>
-</div>
-    <form id="main">...</form>
-</div>
-                        `}
+					  {`<form>
+    <div>
+        <label>Favorite Animal</label>
+        <input>
+    </div>
+    <div>
+        <label>Favorite Color</label>
+        <div>
+            <span tabindex= `}</code>
+                    <input type={"text"} id="first"  value={this.state.textValue} placeholder=""
+                           onChange={this.handleChange}
+                           aria-label={"set tab-index to 0 so tooltip can be keyboard accessible"}/>
+                   <code className="language-html">
+					  {`>hint</span> /* set tab-index to 0 so tooltip can be keyboard accessible*/
+        </div>
+
+        <input>
+    </div>
+    <div>
+        <label>Favorite Candy</label>
+        <input>
+    </div>
+    <div>
+        <label>Favorite City</label>
+        <input>
+    </div>
+`}
                     </code>
 				</pre>
                     </Paper>
@@ -213,7 +216,6 @@ class CodeChange extends Component {
                             color={"primary"}>
                         Update Code
                     </Button>
-                    {CodeChange.renderButton()}
                 </form>
                 <Snackbar
                     anchorOrigin={{
@@ -227,7 +229,7 @@ class CodeChange extends Component {
                     <MySnackbarContentWrapper
                         onClose={this.handleClose}
                         variant="warning"
-                        message="Please type code before updating code!"
+                        message={this.state.message}
                     />
                 </Snackbar>
             </div>
@@ -236,4 +238,4 @@ class CodeChange extends Component {
 
 }
 
-export default CodeChange;
+export default CodeChangeAccessible;

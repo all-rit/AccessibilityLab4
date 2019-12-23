@@ -24,7 +24,10 @@ const variantIcon = {
     error: ErrorIcon,
     info: InfoIcon,
 };
-
+const minMax={
+    min: 44,
+    max: 200
+};
 
 function MySnackbarContentWrapper(props) {
 
@@ -84,24 +87,26 @@ MySnackbarContentWrapper.propTypes = {
     variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
 };
 
-class CodeChange extends Component {
+class CodeChangeTarget extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {textValue: '', textValue1: '', textValue2: '', textValue3: '', snackBarOpen: false};
+        this.state = {textValue: '', textValue1: '', snackBarOpen: false, message:"Please type code before updating code!"};
         this.handleChange = this.handleChange.bind(this);
         this.handleChange1 = this.handleChange1.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        CodeChange.renderButton = CodeChange.renderButton.bind(this);
-        if (window.location.state === undefined) {
-            window.location.state = {endButtonEnabled: false}
-        } else {
+        if (window.location.state !== undefined) {
+            this.state = {textValue: window.location.state.width,textValue1:window.location.state.height, snackBarOpen:false, message: "Please type code before updating code!"};
             window.location.state = {
-                endButtonEnabled: true,
                 width: window.location.state.width,
-                height: window.location.state.height,
-                burgerAltValue: window.location.state.burgerAltValue,
+                height: window.location.state.height
+            };
+        }
+        else{
+            window.location.state = {
+                width: null,
+                height: null,
             };
         }
     }
@@ -111,10 +116,10 @@ class CodeChange extends Component {
         if (window.location.state.height !== undefined && window.location.state.width !== undefined) {
             const el0 = document.getElementById("first");
             el0.value = window.location.state.width;
-            CodeChange.doEvent(el0, 'input');
+            CodeChangeTarget.doEvent(el0, 'input');
             const el1 = document.getElementById("second");
             el1.value = window.location.state.height;
-            CodeChange.doEvent(el1, 'input');
+            CodeChangeTarget.doEvent(el1, 'input');
 
         }
     }
@@ -150,39 +155,29 @@ class CodeChange extends Component {
         event.preventDefault();
         console.log('Width updated as: ' + this.state.textValue);
         console.log('Height updated as: ' + this.state.textValue1);
-        if (window.location.state.width != null &&
-            window.location.state.height != null &&
-            window.location.state.endButtonEnabled != null) {
+        if (this.state.textValue === '' || this.state.textValue1 === '') {
+            this.setState({message: "Please type code before updating code!", snackBarOpen: true});
+        } else if (parseInt(this.state.textValue) < minMax.min || parseInt(this.state.textValue1) < minMax.min) {
+            this.setState({message: "Please enter value greater than or equal to "+minMax.min, snackBarOpen: true});
+        }
+        else if (parseInt(this.state.textValue) > minMax.max || parseInt(this.state.textValue1) > minMax.max) {
+            this.setState({message: "Please enter value less than or equal to "+minMax.max, snackBarOpen: true});
+        }
+        else if(!(/^\d+$/.test(this.state.textValue)) || !(/^\d+$/.test(this.state.textValue1))){
+            this.setState({message: "Please enter numeric value", snackBarOpen: true});
+
+        }
+        else {
             window.location.state = {
                 width: this.state.textValue,
-                height: this.state.textValue1,
-                endButtonEnabled: true
-            };
-            navigate('/SubmitUpdated');
-        } else if (this.state.textValue === '' || this.state.textValue1 === '') {
-            this.setState({snackBarOpen: true});
-        } else {
-            window.location.state = {
-                width: this.state.textValue,
-                height: this.state.textValue1,
-                burgerAltValue: this.state.textValue2,
-                endButtonEnabled: true
+                height: this.state.textValue1
             };
             navigate('/SubmitUpdated');
         }
         Prism.highlightAll();
     }
 
-    static renderButton() {
-        const buttonEnabled = window.location.state.endButtonEnabled;
-        const buttonStyle = {marginLeft: '10px'};
-        if (buttonEnabled) {
-            return (<Button href={"/SubmitUpdated"} aria-label={"End Activity"}
-                            variant={"contained"} color={"secondary"} style={buttonStyle}>
-                End Activity
-            </Button>);
-        }
-    }
+
 
     static doEvent(obj, event) {
         const eventInit = new Event(event, {target: obj, bubbles: true});
@@ -193,8 +188,18 @@ class CodeChange extends Component {
         const paperStyle = {marginLeft: "10px", marginRight: "10px", marginTop: "20px"};
         return (
             <div>
+
                 <CodeUpdateHeader heading={"Make Code Changes"} justifyAlignment={"space-between"}
                                   helpMessage={"#Placeholder"}/>
+
+                <div className="app__instructions__small2" >
+                    <h2>
+                        Intent
+                    </h2>
+                    The intent of this code change is to ensure that target sizes are large enough for users to
+                    easily activate them, especially those with limited dexterity. Mice and similar pointing devices
+                    can be hard to use for these users, and a larger target will help them activate the target.
+                </div>
                 <form onSubmit={this.handleSubmit} noValidate autoComplete={"off"}>
                     <Paper style={paperStyle}>
 				<pre>
@@ -203,7 +208,7 @@ class CodeChange extends Component {
 .button {
     marginRight: 10px;
     marginLeft: 10px;
-    min-width:`}</code> <input type={"text"} id="first" value={this.state.textValue} placeholder="20"
+    min-width: `}</code> <input type={"text"} id="first" value={this.state.textValue} placeholder="20"
                                   onChange={this.handleChange}
                                   aria-label={"Please set min width to 40px"}/>
                                   <code className="language-css">{` px; /*Set to at least 44px*/
@@ -224,7 +229,6 @@ class CodeChange extends Component {
                             color={"primary"}>
                         Update Code
                     </Button>
-                    {CodeChange.renderButton()}
                 </form>
                 <Snackbar
                     anchorOrigin={{
@@ -238,7 +242,7 @@ class CodeChange extends Component {
                     <MySnackbarContentWrapper
                         onClose={this.handleClose}
                         variant="warning"
-                        message="Please type code before updating code!"
+                        message={this.state.message}
                     />
                 </Snackbar>
             </div>
@@ -247,4 +251,4 @@ class CodeChange extends Component {
 
 }
 
-export default CodeChange;
+export default CodeChangeTarget;

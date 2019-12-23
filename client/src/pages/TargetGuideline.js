@@ -42,11 +42,11 @@ class FirstPage extends Component {
                 </div>
                 <div>
                     <h1 className="app__name">Was That Difficult?</h1>
-                    <h2 className="app__instructions__small">People with mobile dexterity disabilities have a hard time clicking small buttons. To make sure your software is accessible by everyone, ensure that buttons follow the WGAC 2.55 Target Guideline. Buttons must be a minimum of 44 x 44 px
+                    <h2 className="app__instructions__small">People with mobile dexterity disabilities have a hard time clicking small buttons. To make sure your software is accessible by everyone, ensure that buttons follow the <a href="https://www.w3.org/WAI/WCAG21/Understanding/target-size.html" target="_blank">WGAC 2.55 Target Guideline</a>. Buttons must be a minimum of 44 x 44 px.
 
                         Go ahead and make the changes to the code by clicking “continue”.</h2>
 
-                    <Button href="/CodeChange" component={Link} variant={"contained"} color={"primary"}
+                    <Button href="/CodeChangeTarget" component={Link} variant={"contained"} color={"primary"}
                             style={buttonStyle}>
                         Continue</Button>
                 </div>

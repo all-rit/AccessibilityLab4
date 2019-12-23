@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-class SixthPage extends Component {
+class BypassBlocksGuideline extends Component {
 
     render() {
         const {
@@ -42,11 +42,11 @@ class SixthPage extends Component {
                 </div>
                 <div>
                     <h1 className="app__name">Was That Difficult?</h1>
-                    <h2 className="app__instructions__small">People with mobile dexterity disabilities sometimes use a keyboard to navigate the page. It is imperative that elements that are accessible through mouse are also navigable by keyboard. Software should follow the WGAC Guideline 2.1 Keyboard Accessible: Make all functionality available from a keyboard.
+                    <h2 className="app__instructions__small">People with mobile dexterity disabilities sometimes use a keyboard to navigate the page. This can be cumbersome if there is no way to skip to the main section. Software should follow the <a href="https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks.html" target="_blank">WGAC 2.4.1: Bypass Blocks Guideline</a>.
 
                         Go ahead and make the changes to the code by clicking “continue”.</h2>
 
-                    <Button href="/CodeChange3" component={Link} variant={"contained"} color={"primary"}
+                    <Button href="/CodeChangeBlocks" component={Link} variant={"contained"} color={"primary"}
                             style={buttonStyle}>
                         Continue</Button>
                 </div>
@@ -57,4 +57,4 @@ class SixthPage extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SixthPage);
+export default connect(mapStateToProps, mapDispatchToProps)(BypassBlocksGuideline);

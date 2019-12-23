@@ -42,11 +42,11 @@ class SixthPage extends Component {
                 </div>
                 <div>
                     <h1 className="app__name">Was That Difficult?</h1>
-                    <h2 className="app__instructions__small">People with mobile dexterity disabilities sometimes use a keyboard to navigate the page. This can be cumbersome if there is no way to skip to the main section. Software should follow the WGAC 2.4.1: Bypass Blocks Guideline.
+                    <h2 className="app__instructions__small">People with mobile dexterity disabilities sometimes use a keyboard to navigate the page. It is imperative that elements that are accessible through mouse are also navigable by keyboard. Software should follow the <a href="https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html" target="_blank"> WGAC Guideline 2.1.1 Keyboard Accessible</a>: Make all functionality available from a keyboard.
 
                         Go ahead and make the changes to the code by clicking “continue”.</h2>
 
-                    <Button href="/CodeChange2" component={Link} variant={"contained"} color={"primary"}
+                    <Button href="/CodeChangeAccessible" component={Link} variant={"contained"} color={"primary"}
                             style={buttonStyle}>
                         Continue</Button>
                 </div>

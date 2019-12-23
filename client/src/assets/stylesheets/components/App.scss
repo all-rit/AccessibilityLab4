@@ -10,13 +10,26 @@
     font-size: 2rem;
     margin-top: 3rem;
     margin-bottom: 1rem;
+    &__black {
+      color:#f8f8f2;
+      background-color: #272822;
+      font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace
 
+    }
     &__small {
       max-width: 60rem;
       margin: auto;
       margin-top: 2rem;
       margin-bottom: 2rem;
     }
+    &__small2 {
+      font-size: 1.5rem;
+      max-width: 95rem;
+      margin: auto;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
   }
 
   &__instructions2 {

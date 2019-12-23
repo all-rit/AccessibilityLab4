@@ -43,9 +43,11 @@ class FirstPage extends Component {
         } = this.props;
         const instructions = "Complete the form below. Use tab to go next, and shift+tab to go back.";
         const instructions2 = "Do not use the mouse!";
-        const url = "/SixthPage";
+        const url = "/FormHintInaccessible";
         return (
             <Fragment>
+
+                <a className="skip-main" href="#main">Skip to main content</a>
                 <div>
                     <Header state={state} user={user} plays={3}/>
                 </div>
