@@ -142,7 +142,7 @@ class CodeChangeBlocks extends Component {
             window.location.state = {
                 role: this.state.textValue
             };
-            navigate('/FormSkipToMainFixed');
+            navigate(process.env.PUBLIC_URL+'/FormSkipToMainFixed');
         }
         Prism.highlightAll();
     }

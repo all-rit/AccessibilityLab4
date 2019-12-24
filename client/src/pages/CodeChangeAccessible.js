@@ -152,7 +152,7 @@ class CodeChangeAccessible extends Component {
             window.location.state = {
                 hint: this.state.textValue
             };
-            navigate('/FormHintAccessible');
+            navigate(process.env.PUBLIC_URL+'/FormHintAccessible');
         }
         Prism.highlightAll();
     }

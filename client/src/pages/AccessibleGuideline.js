@@ -46,7 +46,7 @@ class SixthPage extends Component {
 
                         Go ahead and make the changes to the code by clicking “continue”.</h2>
 
-                    <Button href="/CodeChangeAccessible" component={Link} variant={"contained"} color={"primary"}
+                    <Button href={process.env.PUBLIC_URL+'/CodeChangeAccessible'} component={Link} variant={"contained"} color={"primary"}
                             style={buttonStyle}>
                         Continue</Button>
                 </div>

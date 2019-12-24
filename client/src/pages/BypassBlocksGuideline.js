@@ -46,7 +46,7 @@ class BypassBlocksGuideline extends Component {
 
                         Go ahead and make the changes to the code by clicking “continue”.</h2>
 
-                    <Button href="/CodeChangeBlocks" component={Link} variant={"contained"} color={"primary"}
+                    <Button href={process.env.PUBLIC_URL+'/CodeChangeBlocks'} component={Link} variant={"contained"} color={"primary"}
                             style={buttonStyle}>
                         Continue</Button>
                 </div>

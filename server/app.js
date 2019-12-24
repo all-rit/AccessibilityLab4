@@ -9,9 +9,9 @@ const passport = require('passport');
 const auth = require('./auth');
 
 const app = express();
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5002;
 
-const allowedOrigins = [process.env.CLIENT_URL, 'http://localhost:5001', 'http://all.rit.edu','http://all.rit.edu:5001/user','http://localhost:3000'];
+const allowedOrigins = [process.env.CLIENT_URL, 'http://localhost:5002', 'http://all.rit.edu','http://all.rit.edu:5002/user','http://localhost:3000'];
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -41,5 +41,5 @@ app.use(cors({
 }));
 
 app.use(require('./routes'));
-
+console.log(process.env);
 app.listen(port, () => console.log(`Listening on port ${port}!`));

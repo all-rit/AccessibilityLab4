@@ -58,7 +58,7 @@ class SmallTarget extends Component {
                     <h1 className="app__name">Dexterity Lab</h1>
                     <AppInstructions instructions={instructions}/>
                     <div style={{width:"300px", height:"300px", margin:"auto", paddingTop:"50px"}} onMouseMove={e =>this.wiggle(e)}>
-                    <Button  ref = {c => this.myDiv = c} href="/TargetGuideline" component={Link} variant={"contained"} color={"primary"}
+                    <Button  ref = {c => this.myDiv = c} href={process.env.PUBLIC_URL+'/TargetGuideline'} component={Link} variant={"contained"} color={"primary"}
                             style={this.state} className="app__wiggle">
                         Start</Button>
                     </div>

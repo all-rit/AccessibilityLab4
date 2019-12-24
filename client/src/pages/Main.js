@@ -40,7 +40,7 @@ class Main extends Component {
                 <div>
                     <h1 className="app__name">Dexterity Lab</h1>
                     <AppInstructions instructions={instructions}/>
-                    <Button href="/SmallTarget" component={Link} variant={"contained"} color={"primary"}
+                    <Button href={process.env.PUBLIC_URL+'/SmallTarget'} component={Link} variant={"contained"} color={"primary"}
                             style={buttonStyle}>
                         Start</Button>
                 </div>

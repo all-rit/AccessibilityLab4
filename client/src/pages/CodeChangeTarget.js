@@ -172,7 +172,7 @@ class CodeChangeTarget extends Component {
                 width: this.state.textValue,
                 height: this.state.textValue1
             };
-            navigate('/SubmitUpdated');
+            navigate(process.env.PUBLIC_URL+'/SubmitUpdated');
         }
         Prism.highlightAll();
     }

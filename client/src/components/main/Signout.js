@@ -20,12 +20,12 @@ const handleSignout = (actions) => {
         headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With'}
     })
         .then(res => res.text())
-        .then(() => window.location.reload())
         .then(() => {
             actions.updateUser(null);
             console.log('user updated');
+            window.location.reload(false);
         })
-        .catch(error => console.log(error))
+        .catch(error => console.log(error));
 };
 
 /*
