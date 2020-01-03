@@ -19,7 +19,7 @@ const handleSignout = (actions) => {
         credentials: 'include',
         headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With'}
     })
-        .then(res => res.text())
+        .then(res => console.log(res))
         .then(() => {
             actions.updateUser(null);
             console.log('user updated');

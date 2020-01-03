@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-import {GAME_IDLE} from '../../constants';
-
 import WelcomeMessage from './WelcomeMessage';
 import Button from "@material-ui/core/Button";
 import {AppBar} from "@material-ui/core";

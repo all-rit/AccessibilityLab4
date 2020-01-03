@@ -28,15 +28,16 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-class FirstPage extends Component {
-    constructor() {
-        super();
+class FormSkipToMainFixed extends Component {
+    constructor(props) {
+        super(props);
         this.btn = React.createRef();
     }
     state = {class: 'app__instructions2'};
     callbackFunction = (childData) => {
         this.setState({class:"app__instructions3"})
     };
+
     render() {
         const {
             user,state
@@ -53,11 +54,11 @@ class FirstPage extends Component {
                 </div>
                 <ExtraNav/>
                 <AppInstructions class = {this.state.class} instructions2={instructions2} instructions={instructions}/>
-                <FormComp url={url} parentCallback = {this.callbackFunction} />
+                <FormComp url={url} parentCallback = {this.callbackFunction} name={this.constructor.name}/>
 
             </Fragment>
         );
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FirstPage);
+export default connect(mapStateToProps, mapDispatchToProps)(FormSkipToMainFixed);

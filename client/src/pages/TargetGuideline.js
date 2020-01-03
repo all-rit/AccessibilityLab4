@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-class FirstPage extends Component {
+class TargetGuideline extends Component {
 
     render() {
         const {
@@ -57,4 +57,4 @@ class FirstPage extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FirstPage);
+export default connect(mapStateToProps, mapDispatchToProps)(TargetGuideline);

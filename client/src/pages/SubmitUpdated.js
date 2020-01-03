@@ -8,6 +8,8 @@ import {actions as appActions} from '../reducers/AppReducer';
 import AppInstructions from '../components/main/AppInstructions'
 import StickyFooter from "../components/helpers/StickyFooter";
 import ReactDOM from "react-dom";
+import PageService from "../services/PageService";
+import {navigate} from "@reach/router";
 
 const mapStateToProps = (state) => {
     return {
@@ -25,15 +27,20 @@ const mapDispatchToProps = (dispatch) => {
 
 
 class SubmitUpdated extends Component {
-    componentDidMount() {
-        if (window.location.state != undefined ) {
-            this.setState({width: window.location.state.width + "px", height: window.location.state.height + "px"});
-
-        }
+    constructor(props) {
+        super(props);
+        this.state = {secondsElapsed: 0, marginRight: this.style.marginRight+"px", marginLeft: this.style.marginLeft +"px", width:this.style.width +"px", height:this.style.height +"px", fontSize: this.style.fontSize +"px", top:"px", left:"px"};
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        if (window.location.state !== undefined ) {
+            this.setState({width: window.location.state.width + "px", height: window.location.state.height + "px"});
+        }
+        this.interval = setInterval(()=>this.setState({secondsElapsed: this.state.secondsElapsed + 1}), 1000)
+
+    }
     style = {marginRight: 10, marginLeft: 10, width:44, height:44, fontSize: 10};
-    state = {marginRight: this.style.marginRight+"px", marginLeft: this.style.marginLeft +"px", width:this.style.width +"px", height:this.style.height +"px", fontSize: this.style.fontSize +"px", top:"px", left:"px"};
     wiggle = (e) => {
         let distX =this.calculateDistanceX(this.myDiv, e.screenX);
         let distY =this.calculateDistanceY(this.myDiv, e.screenY);
@@ -47,6 +54,16 @@ class SubmitUpdated extends Component {
     }
     calculateDistanceY(elem, mouseY) {
         return Math.floor(mouseY - (elem.offsetTop+(this.style.height/2)));
+    }
+
+    handleSubmit(){
+        PageService.createPage(this.constructor.name, this.state.secondsElapsed);
+        navigate(process.env.PUBLIC_URL+'/FormSkipToMainBroken');
+    }
+
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     render() {
@@ -65,7 +82,7 @@ class SubmitUpdated extends Component {
                     <h1 className="app__name">Dexterity Lab</h1>
                     <AppInstructions instructions={instructions}/>
                     <div style={{width:"200px", height:"200px", margin:"auto", paddingTop:"30px"}} onMouseMove={e =>this.wiggle(e)}>
-                    <Button  ref = {c => this.myDiv = c} href={process.env.PUBLIC_URL+'/FormSkipToMainBroken'} component={Link} variant={"contained"} color={"primary"}
+                    <Button  ref = {c => this.myDiv = c} onClick={this.handleSubmit} component={Link} variant={"contained"} color={"primary"}
                             style={this.state} className="app__wiggle">
                         Start</Button>
                     </div>

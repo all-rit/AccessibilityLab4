@@ -30,6 +30,6 @@ exports.authenticateCallback = (req, res) => {
 exports.logout = (req, res) => {
 	req.logout();
 	req.session.token = null;
-	console.log('logout code ran');
+	res.headers({'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With'});
 	res.redirect(process.env.CLIENT_URL);
 };

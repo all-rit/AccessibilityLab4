@@ -11,7 +11,7 @@ const auth = require('./auth');
 const app = express();
 const port = process.env.PORT || 5002;
 
-const allowedOrigins = [process.env.CLIENT_URL, 'http://localhost:5002', 'http://all.rit.edu','http://all.rit.edu:5002/user','http://localhost:3000'];
+const allowedOrigins = [process.env.CLIENT_URL, 'http://all.rit.edu:5002/page/complete', 'http://localhost:5002', 'http://all.rit.edu','http://all.rit.edu:5002/user','http://localhost:3000','http://all.rit.edu:5002/logout','http://all.rit.edu:5002/'];
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -23,14 +23,13 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({
-  name: 'session',
-  secret: process.env.KEY,
+  name: 'session',  secret: process.env.KEY,
   resave: false,
   saveUninitialized: true
 }));
 app.use(cors({
   origin: function (origin, callback) {
-    console.log('CORS orign is:' + origin);
+    console.log('CORS origin is:' + origin);
     if (allowedOrigins.indexOf(origin) !== -1) {
       return callback(null, true);
     }
@@ -41,5 +40,4 @@ app.use(cors({
 }));
 
 app.use(require('./routes'));
-console.log(process.env);
 app.listen(port, () => console.log(`Listening on port ${port}!`));

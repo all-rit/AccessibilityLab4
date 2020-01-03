@@ -2,16 +2,28 @@ import React, {Component} from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText,Alert } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Toolitip from "../helpers/tooltip";
+import PageService from "../../services/PageService";
 
 class FormComp extends Component {
-    state = {
-        animal:"",
-        color: "",
-        candy: "",
-        city: "",
-        show:false,
-        alert: "Fill Out Form Completely"
-    };
+    constructor(props) {
+        super(props);
+        this.state = {secondsElapsed: 0, animal:"",
+            color: "",
+            candy: "",
+            city: "",
+            show: false,
+            alert: "Fill Out Form Completely"
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    componentDidMount() {
+        this.interval = setInterval(()=>this.setState({secondsElapsed: this.state.secondsElapsed + 1}), 1000)
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.interval);
+    }
+
     change = e =>{
         this.setState({
             [e.target.name]: e.target.value.toLowerCase()
@@ -22,6 +34,10 @@ class FormComp extends Component {
         this.props.parentCallback('error');
     };
 
+    handleSubmit(){
+        PageService.createPage(this.props.name, this.state.secondsElapsed);
+        window.location.href = this.props.url;
+    }
 
     form_sub=e=>{
         if(this.props.rule){
@@ -31,14 +47,14 @@ class FormComp extends Component {
                 console.log(this.state.color);
                 this.setState({show:true, alert: "Color doesn't meet 'hint' criteria"});
             } else {
-                window.location.href = this.props.url;
+                this.handleSubmit();
             }
         }
         else {
             if (this.state.animal === "" || this.state.city === "" || this.state.candy === "" || this.state.color === "") {
                 this.setState({show: true})
             } else {
-                window.location.href = this.props.url;
+                this.handleSubmit();
             }
         }
     };
@@ -72,7 +88,7 @@ class FormComp extends Component {
                 }
                 <Button onClick={(e)=>this.form_sub()}>Submit</Button>
                 {this.props.rule &&
-                <Button color="danger" style={{marginLeft: "20px"}} href={this.props.url}>Give Up</Button>
+                <Button color="danger" style={{marginLeft: "20px"}} onClick={this.handleSubmit}>Give Up</Button>
                 }
             </Form>
             </main>
