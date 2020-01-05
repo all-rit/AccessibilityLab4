@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 	return sequelize.define(
-		'Session',
+		'session',
 		{
 			usersessionid : {
 				type: DataTypes.NUMBER(21),

@@ -1,7 +1,7 @@
 const db = require('../database');
 
 exports.createPage = (data) => {
-	return db.Login
+	return db.login
 		.findAll({ limit: 1, where: { usersessionid: data.token }, order: [ [ 'loginid', 'DESC' ] ] })
 		.then((logins) => {
 			return logins[0];
@@ -19,4 +19,4 @@ exports.createPage = (data) => {
 		.catch((err) => {
 			console.log(err);
 		});
-}
+};

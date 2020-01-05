@@ -82,7 +82,7 @@ class SubmitUpdated extends Component {
                     <h1 className="app__name">Dexterity Lab</h1>
                     <AppInstructions instructions={instructions}/>
                     <div style={{width:"200px", height:"200px", margin:"auto", paddingTop:"30px"}} onMouseMove={e =>this.wiggle(e)}>
-                    <Button  ref = {c => this.myDiv = c} onClick={this.handleSubmit} component={Link} variant={"contained"} color={"primary"}
+                    <Button  ref = {c => this.myDiv = c} href="#" onClick={this.handleSubmit} component={Link} variant={"contained"} color={"primary"}
                             style={this.state} >
                         Start</Button>
                     </div>
