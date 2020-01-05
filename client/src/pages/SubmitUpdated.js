@@ -83,7 +83,7 @@ class SubmitUpdated extends Component {
                     <AppInstructions instructions={instructions}/>
                     <div style={{width:"200px", height:"200px", margin:"auto", paddingTop:"30px"}} onMouseMove={e =>this.wiggle(e)}>
                     <Button  ref = {c => this.myDiv = c} onClick={this.handleSubmit} component={Link} variant={"contained"} color={"primary"}
-                            style={this.state} className="app__wiggle">
+                            style={this.state} >
                         Start</Button>
                     </div>
                 </div>

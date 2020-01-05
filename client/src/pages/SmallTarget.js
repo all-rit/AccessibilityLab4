@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 class SmallTarget extends Component {
     constructor(props) {
         super(props);
-        this.state = {secondsElapsed:0,marginRight: this.style.marginRight+"px", marginLeft: this.style.marginLeft +"px", width:this.style.width +"px", height:this.style.height +"px", fontSize: this.style.fontSize +"px", top:"px", left:"px"};
+        this.state = {secondsElapsed:0, marginRight: this.style.marginRight+"px", marginLeft: this.style.marginLeft +"px", width:this.style.width +"px", height:this.style.height +"px", fontSize: this.style.fontSize +"px", top:"px", left:"px"};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -78,7 +78,7 @@ class SmallTarget extends Component {
                     <AppInstructions instructions={instructions}/>
                     <div style={{width:"300px", height:"300px", margin:"auto", paddingTop:"50px"}} onMouseMove={e =>this.wiggle(e)}>
                     <Button  ref = {c => this.myDiv = c} onClick={this.handleSubmit} component={Link} variant={"contained"} color={"primary"}
-                            style={this.state} className="app__wiggle">
+                            style={this.state} >
                         Start</Button>
                     </div>
                 </div>
