@@ -36,7 +36,8 @@ class SmallTarget extends Component {
     handleSubmit(){
         // console.log(this.constructor.name);
         // console.log(this.state.secondsElapsed);
-        PageService.createPage(this.constructor.name, this.state.secondsElapsed);
+        const name = "SmallTarget";
+        PageService.createPage(name, this.state.secondsElapsed);
         navigate(process.env.PUBLIC_URL+'/TargetGuideline');
     }
     componentDidMount() {

@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const Page = sequelize.define(
-        'Page',
+        'page',
         {
             pageid: {
                 type: DataTypes.INTEGER,
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             pagename: { type: DataTypes.TEXT },
             completiontime: { type: DataTypes.INTEGER },
         },
-        { tableName: 'Page' }
+        { tableName: 'page' }
     );
 
     return Page;

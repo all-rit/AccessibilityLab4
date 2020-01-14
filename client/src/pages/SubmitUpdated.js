@@ -57,7 +57,8 @@ class SubmitUpdated extends Component {
     }
 
     handleSubmit(){
-        PageService.createPage(this.constructor.name, this.state.secondsElapsed);
+        const name = "SubmitUpdated";
+        PageService.createPage(name, this.state.secondsElapsed);
         navigate(process.env.PUBLIC_URL+'/FormSkipToMainBroken');
     }
 

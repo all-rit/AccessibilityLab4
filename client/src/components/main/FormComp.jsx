@@ -3,6 +3,7 @@ import { Button, Form, FormGroup, Label, Input, FormText,Alert } from 'reactstra
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Toolitip from "../helpers/tooltip";
 import PageService from "../../services/PageService";
+import {navigate} from "@reach/router";
 
 class FormComp extends Component {
     constructor(props) {
@@ -36,7 +37,7 @@ class FormComp extends Component {
 
     handleSubmit(){
         PageService.createPage(this.props.name, this.state.secondsElapsed);
-        window.location.href = this.props.url;
+        navigate(this.props.url);
     }
 
     form_sub=e=>{

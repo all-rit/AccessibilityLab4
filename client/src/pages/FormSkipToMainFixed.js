@@ -45,6 +45,7 @@ class FormSkipToMainFixed extends Component {
         const instructions = "Complete the form below. Use tab to go next, and shift+tab to go back.";
         const instructions2 = "Do not use the mouse!";
         const url = process.env.PUBLIC_URL+"/FormHintInaccessible";
+        const name = "FormSkipToMainFixed";
         return (
             <Fragment>
 
@@ -54,7 +55,7 @@ class FormSkipToMainFixed extends Component {
                 </div>
                 <ExtraNav/>
                 <AppInstructions class = {this.state.class} instructions2={instructions2} instructions={instructions}/>
-                <FormComp url={url} parentCallback = {this.callbackFunction} name={this.constructor.name}/>
+                <FormComp url={url} parentCallback = {this.callbackFunction} name={name}/>
 
             </Fragment>
         );

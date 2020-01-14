@@ -7,7 +7,7 @@ exports.createPage = (data) => {
 			return logins[0];
 		})
 		.then((login) => {
-			return db.Page.create({
+			return db.page.create({
 				loginid: login.loginid,
 				pagename: data.pagename,
 				completiontime: data.completiontime

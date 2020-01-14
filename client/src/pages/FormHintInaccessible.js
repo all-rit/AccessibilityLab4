@@ -45,6 +45,7 @@ class FormHintInaccessible extends Component {
         const instructions2 = "Do not use the mouse!";
         const url = process.env.PUBLIC_URL+"/AccessibleGuideline";
         const tab = null;
+        const name = "FormHintInaccessible";
         return (
             <Fragment>
                 <a className="skip-main" href="#main">Skip to main content</a>
@@ -53,7 +54,7 @@ class FormHintInaccessible extends Component {
                 </div>
                 <ExtraNav/>
                 <AppInstructions class = {this.state.class} instructions2={instructions2} instructions={instructions}/>
-                <FormComp url={url} rule={true} tab={tab} parentCallback = {this.callbackFunction} name={this.constructor.name} />
+                <FormComp url={url} rule={true} tab={tab} parentCallback = {this.callbackFunction} name={name} />
 
             </Fragment>
         );
