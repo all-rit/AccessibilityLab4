@@ -44,8 +44,8 @@ class SubmitUpdated extends Component {
     wiggle = (e) => {
         let distX =this.calculateDistanceX(this.myDiv, e.screenX);
         let distY =this.calculateDistanceY(this.myDiv, e.screenY);
-        let right = -distX/2 ;
-        let top = distY/2;
+        let right = -distX/2 > -300 ? -(distX/2): (-(distX/2)/25);
+        let top = distY/2 <300 ? distY/2: 300;
         this.setState({right: right+"px", top:top +"px"})
     };
 

@@ -27,9 +27,10 @@ const mapDispatchToProps = (dispatch) => {
 
 
 class SmallTarget extends Component {
+
     constructor(props) {
         super(props);
-        this.state = {secondsElapsed:0, marginRight: this.style.marginRight+"px", marginLeft: this.style.marginLeft +"px", width:this.style.width +"px", height:this.style.height +"px", fontSize: this.style.fontSize +"px", top:"px", left:"px"};
+        this.state = {secondsElapsed:0, marginRight: this.style.marginRight+"px", marginLeft: this.style.marginLeft +"px", width:this.style.width +"px", height:this.style.height +"px",fontSize: this.style.fontSize +"px", top:"px", left:"px"};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -50,8 +51,10 @@ class SmallTarget extends Component {
     wiggle = (e) => {
         let distX =this.calculateDistanceX(this.myDiv, e.screenX);
         let distY =this.calculateDistanceY(this.myDiv, e.screenY);
-        let right = -distX/2 ;
-        let top = distY/2;
+        let right = -distX/2 > -300 ? -(distX/2): (-(distX/2)/25);
+        let top = distY/2 <300 ? distY/2: 300;
+        // console.log(right);
+
         this.setState({right: right+"px", top:top +"px"})
     };
 
