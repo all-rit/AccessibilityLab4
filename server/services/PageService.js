@@ -10,7 +10,8 @@ exports.createPage = (data) => {
 			return db.page.create({
 				loginid: login.loginid,
 				pagename: data.pagename,
-				completiontime: data.completiontime
+				completiontime: data.completiontime,
+				labname: data.labname
 			});
 		})
 		.then((page) => {
