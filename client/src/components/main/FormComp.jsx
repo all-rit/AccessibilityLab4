@@ -1,100 +1,152 @@
-import React, {Component} from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText,Alert } from 'reactstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { Component } from "react";
+import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Toolitip from "../helpers/tooltip";
 import PageService from "../../services/PageService";
-import {navigate} from "@reach/router";
+import { navigate } from "@reach/router";
 
 class FormComp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {secondsElapsed: 0, animal:"",
-            color: "",
-            candy: "",
-            city: "",
-            show: false,
-            alert: "Fill Out Form Completely"
-        };
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    componentDidMount() {
-        this.interval = setInterval(()=>this.setState({secondsElapsed: this.state.secondsElapsed + 1}), 1000)
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      secondsElapsed: 0,
+      animal: "",
+      color: "",
+      candy: "",
+      city: "",
+      show: false,
+      alert: "Fill Out Form Completely"
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  componentDidMount() {
+    this.interval = setInterval(
+      () => this.setState({ secondsElapsed: this.state.secondsElapsed + 1 }),
+      1000
+    );
+  }
 
-    componentWillUnmount(){
-        clearInterval(this.interval);
-    }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
 
-    change = e =>{
+  change = e => {
+    this.setState({
+      [e.target.name]: e.target.value.toLowerCase()
+    });
+  };
+  focusElem = e => {
+    e.target.blur();
+    this.props.parentCallback("error");
+  };
+
+  handleSubmit() {
+    PageService.createPage(this.props.name, this.state.secondsElapsed);
+    navigate(this.props.url);
+  }
+
+  form_sub = e => {
+    if (this.props.rule) {
+      if (
+        this.state.animal === "" ||
+        this.state.city === "" ||
+        this.state.candy === "" ||
+        this.state.color === ""
+      ) {
+        this.setState({ show: true, alert: "Fill Out Form Completely" });
+      } else if (
+        this.state.animal === "" ||
+        this.state.city === "" ||
+        this.state.color !== "violet" ||
+        this.state.candy === "" ||
+        this.state.color === ""
+      ) {
+        console.log(this.state.color);
         this.setState({
-            [e.target.name]: e.target.value.toLowerCase()
+          show: true,
+          alert: "Color doesn't meet 'hint' criteria"
         });
-    };
-    focusElem = (e) => {
-        e.target.blur();
-        this.props.parentCallback('error');
-    };
-
-    handleSubmit(){
-        PageService.createPage(this.props.name, this.state.secondsElapsed);
-        navigate(this.props.url);
+      } else {
+        this.handleSubmit();
+      }
+    } else {
+      if (
+        this.state.animal === "" ||
+        this.state.city === "" ||
+        this.state.candy === "" ||
+        this.state.color === ""
+      ) {
+        this.setState({ show: true });
+      } else {
+        this.handleSubmit();
+      }
     }
-
-    form_sub=e=>{
-        if(this.props.rule){
-            if (this.state.animal === "" || this.state.city === "" || this.state.candy === "" || this.state.color === "") {
-                this.setState({show: true, alert: "Fill Out Form Completely"});}
-        else if (this.state.animal === "" || this.state.city === "" || this.state.color !== ("violet") || this.state.candy === "" || this.state.color === "") {
-                console.log(this.state.color);
-                this.setState({show:true, alert: "Color doesn't meet 'hint' criteria"});
-            } else {
-                this.handleSubmit();
-            }
-        }
-        else {
-            if (this.state.animal === "" || this.state.city === "" || this.state.candy === "" || this.state.color === "") {
-                this.setState({show: true})
-            } else {
-                this.handleSubmit();
-            }
-        }
-    };
-    render() {
-        return (
-            <main>
-                <div className='overlap' onClick={e => this.focusElem(e)}>
-                </div>
-            <Form className="formComp" >
-                <FormGroup>
-                    <Label for="animal">Favorite Animal e.g. Tiger</Label>
-                    <Input type="text" name="animal" id="main" onChange={e=>this.change(e)} value={this.state.animal} />
-                </FormGroup>
-                <FormGroup>
-                    <Label for="color">Favorite Color e.g. Blue {this.props.rule && <Toolitip tab={this.props.tab}/>}</Label>
-                    <Input type="text" name="color" id="color" onChange={e=>this.change(e)} value={this.state.color}  />
-                </FormGroup>
-                <FormGroup>
-                    <Label for="candy">Favorite Candy e.g. Skittles</Label>
-                    <Input type="text" name="candy" id="candy"  onChange={e=>this.change(e)} value={this.state.candy} />
-                </FormGroup>
-                <FormGroup>
-                    <Label for="city">Favorite City e.g. NYC</Label>
-                    <Input type="text" name="city" id="city" onChange={e=>this.change(e)} value={this.state.city} />
-                </FormGroup>
-                { this.state.show
-                    ? <Alert color="danger" >
-                        {this.state.alert}
-                    </Alert>
-                    : null
-                }
-                <Button onClick={(e)=>this.form_sub()}>Submit</Button>
-                {this.props.rule &&
-                <Button color="danger" style={{marginLeft: "20px"}} onClick={this.handleSubmit}>Give Up</Button>
-                }
-            </Form>
-            </main>
-        );
-    }
+  };
+  render() {
+    return (
+      <main>
+        <div className="overlap" onClick={e => this.focusElem(e)}></div>
+        <Form className="formComp">
+          <FormGroup>
+            <Label for="animal">Favorite Animal e.g. Tiger</Label>
+            <Input
+              type="text"
+              name="animal"
+              id="main"
+              onChange={e => this.change(e)}
+              value={this.state.animal}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="color">
+              Favorite Color e.g. Blue{" "}
+              {this.props.rule && <Toolitip tab={this.props.tab} />}
+            </Label>
+            <Input
+              type="text"
+              name="color"
+              id="color"
+              onChange={e => this.change(e)}
+              value={this.state.color}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="candy">Favorite Candy e.g. Skittles</Label>
+            <Input
+              type="text"
+              name="candy"
+              id="candy"
+              onChange={e => this.change(e)}
+              value={this.state.candy}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="city">Favorite City e.g. NYC</Label>
+            <Input
+              type="text"
+              name="city"
+              id="city"
+              onChange={e => this.change(e)}
+              value={this.state.city}
+            />
+          </FormGroup>
+          {this.state.show ? (
+            <Alert color="danger">{this.state.alert}</Alert>
+          ) : null}
+          <Button onClick={e => this.form_sub()}>Submit</Button>
+          {this.props.rule && (
+            <Button
+              color="danger"
+              style={{ marginLeft: "20px" }}
+              onClick={this.handleSubmit}
+            >
+              Give Up
+            </Button>
+          )}
+        </Form>
+      </main>
+    );
+  }
 }
 
 export default FormComp;

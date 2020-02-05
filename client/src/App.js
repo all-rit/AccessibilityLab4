@@ -1,62 +1,224 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Router} from '@reach/router';
-import './assets/stylesheets/main.scss';
-import CodeChangeBlocks from './pages/CodeChangeBlocks';
-import {actions} from './reducers/AppReducer';
-import SmallTarget from './pages/SmallTarget';
-import FormSkipToMainBroken from './pages/FormSkipToMainBroken';
-import BypassBlocksGuideline from './pages/BypassBlocksGuideline'
-import TargetGuideline from './pages/TargetGuideline';
-import Main from './pages/Main';
-import CodeChangeTarget from './pages/CodeChangeTarget';
-import SubmitUpdated from './pages/SubmitUpdated';
-import FormSkipToMainFixed from "./pages/FormSkipToMainFixed";
-import FormHintInaccessible from "./pages/FormHintInaccessible";
-import AccessibleGuideline from "./pages/AccessibleGuideline"
-import CodeChangeAccessible from './pages/CodeChangeAccessible';
-import FormHintAccessible from "./pages/FormHintAccessible";
-import Finish from './pages/Finish';
+import React, { Component } from "react";
+import logo from "./img/accessCycle.png";
+import About from "./components/body/about";
+import Game from "./components/body/game";
+import Reading from "./components/body/reading";
+import Video from "./components/body/video";
+import Quiz from "./components/body/quiz";
+import Change from "./components/footer/change";
+import "./vendor/bootstrap/css/bootstrap.min.css";
+import "./css/agency.min.css";
+import "./css/style.css";
+import { Google } from "./components/header/buttons/google";
 
-const mapStateToProps = (state) => ({
-    state: state
-});
-const mapDispatchToProps = {
-    login: actions.login,
-    logout: actions.logout,
-    updateUser: actions.updateUser
+const section = {
+  0: <About />,
+  1: <Reading />,
+  2: <Game />,
+  3: <Video />,
+  4: <Quiz />
 };
 
-// eslint-disable-next-line require-jsdoc
 class App extends Component {
-    // eslint-disable-next-line require-jsdoc
-    componentDidMount() {
-        const {user} = this.props;
-        console.log(user);
-        this.props.login();
-    }
+  state = { count: 0 };
 
-    // eslint-disable-next-line require-jsdoc
-    render() {
-        return (
-            <Router basepath={process.env.PUBLIC_URL} className="app">
-                <Main path="/"/>
-                <SmallTarget path="/SmallTarget"/>
-                <TargetGuideline path="/TargetGuideline"/>
-                <SubmitUpdated path="/SubmitUpdated"/>
-                <CodeChangeTarget path={'/CodeChangeTarget'}/>
-                <CodeChangeBlocks path={'/CodeChangeBlocks'}/>
-                <BypassBlocksGuideline path={'/BypassBlocksGuideline'}/>
-                <FormSkipToMainBroken path={'/FormSkipToMainBroken'}/>
-                <FormSkipToMainFixed path={'/FormSkipToMainFixed'}/>
-                <FormHintInaccessible path={'FormHintInaccessible'}/>
-                <AccessibleGuideline path={'/AccessibleGuideline'}/>
-                <CodeChangeAccessible path={'/CodeChangeAccessible'}/>
-                <FormHintAccessible path={'/FormHintAccessible'}/>
-                <Finish path={'/Finish'}/>
-            </Router>
-        );
+  handleIncrement = () => {
+    if (this.state.count < 4) {
+      this.setState({
+        count: this.state.count + 1,
+        message: null
+      });
+    } else {
+      this.setState({
+        message: "This is the final page"
+      });
     }
+  };
+
+  handleDecrement = () => {
+    if (this.state.count) {
+      this.setState({
+        count: this.state.count - 1,
+        message: null
+      });
+    } else {
+      this.setState({
+        message: "This is the first page"
+      });
+    }
+  };
+
+  handleAbout = () => {
+    this.setState({
+      count: 0,
+      message: null
+    });
+  };
+
+  handleReading = () => {
+    this.setState({
+      count: 1,
+      message: null
+    });
+  };
+
+  handleGame = () => {
+    this.setState({
+      count: 2,
+      message: null
+    });
+  };
+
+  handleVideo = () => {
+    this.setState({
+      count: 3,
+      message: null
+    });
+  };
+
+  handleQuiz = () => {
+    this.setState({
+      count: 4,
+      message: null
+    });
+  };
+
+  disappearNext = () => {
+    if (this.state.count >= 4) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  disappearBack = () => {
+    if (this.state.count <= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  render() {
+    return (
+      <div>
+        <nav
+          class="navbar navbar-expand-lg navbar-dark fixed-top"
+          id="mainNav"
+          style={{ backgroundColor: "#484848", height: "12%" }}
+        >
+          <div class="container">
+            <img
+              src={logo}
+              style={{
+                paddingRight: "20px",
+                paddingBottom: "10px",
+                paddingTop: "10px",
+                marginTop: "-10px"
+              }}
+              alt="Computing Accessibility"
+            ></img>
+            <a class="navbar-brand js-scroll-trigger" href="#home">
+              Accessibility Learning Labs
+            </a>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav text-uppercase ml-auto">
+                <li class="nav-item">
+                  <a
+                    class="nav-link js-scroll-trigger"
+                    href="http://all.rit.edu"
+                    alt="Home page"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link js-scroll-trigger"
+                    onClick={this.handleAbout}
+                    href="#about"
+                    alt="About Section"
+                  >
+                    About
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link js-scroll-trigger"
+                    onClick={this.handleReading}
+                    href="#reading"
+                    alt="Reading"
+                  >
+                    Reading
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link js-scroll-trigger"
+                    onClick={this.handleGame}
+                    href="#game"
+                    alt="Game"
+                  >
+                    Game
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link js-scroll-trigger"
+                    onClick={this.handleVideo}
+                    href="#video"
+                    alt="Videos"
+                  >
+                    Video
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link js-scroll-trigger"
+                    onClick={this.handleQuiz}
+                    href="#quiz"
+                    alt="Quiz"
+                  >
+                    Quiz
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <Google />
+        </nav>
+
+        <div>{section[this.state.count]}</div>
+
+        <button
+          class="btn btn-second btn-xl text-uppercase js-scroll-trigger back "
+          onClick={this.handleDecrement}
+          disabled={this.disappearBack() ? "disabled" : false}
+        >
+          back
+        </button>
+        <button
+          class="btn btn-primary btn-xl text-uppercase js-scroll-trigger next"
+          onClick={this.handleIncrement}
+          disabled={this.disappearNext() ? "disabled" : false}
+        >
+          next
+        </button>
+
+        <footer class="footer">
+          <div class="btn-change">
+            <p>
+              <Change />
+              <br />
+              <br />
+              These buttons are disabled so as to not interfere with the
+              accessibility-related portions of the lab.
+            </p>
+          </div>
+        </footer>
+      </div>
+    );
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

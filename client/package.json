@@ -13,14 +13,16 @@
     "cli-engine": "^4.7.6",
     "clsx": "^1.0.4",
     "immutability-helper": "latest",
-    "node-sass": "latest",
+    "node-sass": "^4.13.1",
     "prismjs": "latest",
     "react": "^16.12.0",
     "react-autosize-textarea": "latest",
     "react-color": "latest",
     "react-dom": "^16.12.0",
+    "react-google-button": "^0.7.0",
     "react-helmet": "^5.2.1",
     "react-redux": "latest",
+    "react-router": "^5.1.2",
     "react-spinners": "latest",
     "reactstrap": "^8.1.1",
     "redux": "latest",
@@ -28,8 +30,8 @@
     "victory": "latest"
   },
   "scripts": {
-    "start": "react-scripts start && date && echo 'Options -MultiViews\nRewriteEngine On\nRewriteCond %{REQUEST_FILENAME} !-f\nRewriteRule ^ index.html [QSA,L]\n' >> ./build/.htaccess",
-    "build": "react-scripts build && date && echo 'Options -MultiViews\nRewriteEngine On\nRewriteCond %{REQUEST_FILENAME} !-f\nRewriteRule ^ index.html [QSA,L]\n' >> ./build/.htaccess",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
