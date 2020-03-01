@@ -5,6 +5,15 @@
   position: absolute;
   left: 25%;
 }
+.inputHover:focus{
+  outline: 2px solid #97bfff;
+}
+.inputHover{
+  width: 80px;
+  background-color: #f8f9fa;
+  border: none;
+  margin-right: 5px;
+}
 a.skip-main {
   position:absolute;
   top:auto;
