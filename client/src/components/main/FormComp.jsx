@@ -40,12 +40,14 @@ class FormComp extends Component {
     this.props.parentCallback("error");
   };
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     PageService.createPage(this.props.name, this.state.secondsElapsed);
     navigate(this.props.url);
   }
 
   form_sub = e => {
+    e.preventDefault();
     if (this.props.rule) {
       if (
         this.state.animal === "" ||
@@ -133,15 +135,15 @@ class FormComp extends Component {
           {this.state.show ? (
             <Alert color="danger">{this.state.alert}</Alert>
           ) : null}
-          <Button onClick={e => this.form_sub()}>Submit</Button>
+          <Input type="submit" onClick={e =>this.form_sub(e)} className="formButtonSubmit"/>
           {this.props.rule && (
-            <Button
-              color="danger"
+            <Input
+              type="submit"
+              value="Give Up"
+              className="formButtonHelp"
               style={{ marginLeft: "20px" }}
-              onClick={this.handleSubmit}
-            >
-              Give Up
-            </Button>
+              onClick={e=> this.handleSubmit(e)}
+            />
           )}
         </Form>
       </main>
