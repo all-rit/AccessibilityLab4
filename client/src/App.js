@@ -100,6 +100,7 @@ class App extends Component {
   };
 
   render() {
+    const activeStyle = {color: "#fed136"};
     return (
         <div>
           <nav
@@ -138,6 +139,7 @@ class App extends Component {
                         onClick={this.handleAbout}
                         href="#about"
                         alt="About Section"
+                        style={this.state.count===0? activeStyle: null}
                     >
                       About
                     </a>
@@ -148,6 +150,7 @@ class App extends Component {
                         onClick={this.handleReading}
                         href="#reading"
                         alt="Reading"
+                        style={this.state.count===1? activeStyle: null}
                     >
                       Reading
                     </a>
@@ -158,6 +161,7 @@ class App extends Component {
                         onClick={this.handleGame}
                         href="#game"
                         alt="Game"
+                        style={this.state.count===2? activeStyle: null}
                     >
                       Game
                     </a>
@@ -168,6 +172,7 @@ class App extends Component {
                         onClick={this.handleVideo}
                         href="#video"
                         alt="Videos"
+                        style={this.state.count===3? activeStyle: null}
                     >
                       Video
                     </a>
@@ -178,6 +183,7 @@ class App extends Component {
                         onClick={this.handleQuiz}
                         href="#quiz"
                         alt="Quiz"
+                        style={this.state.count===4? activeStyle: null}
                     >
                       Quiz
                     </a>
