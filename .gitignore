@@ -1,6 +1,7 @@
 
 \.vscode/
-
+frontend/package-lock.json
+backend/package-lock.json
 frontend/\.env
 
 backend/serverConstants\.js
