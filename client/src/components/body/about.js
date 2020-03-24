@@ -27,9 +27,9 @@ const About = ({ title, description, links }) => {
         In this lab, you will learn about why it is important to create software
         that is accessible to users with dexterity impairments.
         You will learn about issues related to dexterity,
-        utilize your knowledge in a game about
-        dexterity impairments, watch several related videos,
-        and take a quiz. Click "Next" to start!
+        increase your understanding through an interactive module about
+        dexterity impairments, watch related videos,
+        and take a quiz to test your knowledge. Click "Next" to start!
       </div>
     </div>
   );
