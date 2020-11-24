@@ -1,9 +1,10 @@
 import React from "react";
+import Quiz from "./../../quiz/App"
 import "./../../vendor/bootstrap/css/bootstrap.min.css";
 import "./../../css/agency.min.css";
 import "./../../css/style.css";
 
-const Quiz = ({ title, description, links }) => {
+const Reading = ({ title, description, links }) => {
   if (links === undefined) {
     links = [null, null, null];
   }
@@ -23,11 +24,12 @@ const Quiz = ({ title, description, links }) => {
           </div>
         </div>
       </section>
-      <div class="row">
+      {/* <div class="row">
         Quiz questions that come from concepts throughout each part of the lab.
-      </div>
+      </div> */}
+      <Quiz />
     </div>
   );
 };
 
-export default Quiz;
+export default Reading;
