@@ -25,7 +25,7 @@ const Reading = ({ title, description, links }) => {
       </section>
       <div class="row">
         Reading that discusses the topic, how it affects people, how often it
-        occers, etc.
+        occurs, etc.
       </div>
     </div>
   );
