@@ -104,7 +104,6 @@ class CodeChangeBlocks extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClose = this.handleClose.bind(this);
     if (window.location.state !== undefined) {
-      console.log(window.location.state);
       this.state = {
         textValue: window.location.state.role,
         snackBarOpen: false,
