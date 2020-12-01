@@ -104,6 +104,7 @@ class CodeChangeBlocks extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClose = this.handleClose.bind(this);
     if (window.location.state !== undefined) {
+      console.log(window.location.state);
       this.state = {
         textValue: window.location.state.role,
         snackBarOpen: false,
@@ -147,8 +148,7 @@ class CodeChangeBlocks extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("Role updated as: " + this.state.textValue);
-    if (this.state.textValue === "") {
+    if (this.state.textValue === "" || null) {
       this.setState({
         message: "Please type code before updating code!",
         snackBarOpen: true

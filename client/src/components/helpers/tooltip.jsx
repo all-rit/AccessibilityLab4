@@ -9,7 +9,7 @@ const Toolitip = (tab) => {
         <div style={{display:"inline-block"}} tabIndex={tab.tab} onFocus={toggle}>
             <span style={{textDecoration: "underline", color:"blue"}}  href="#" id="DisabledAutoHideExample">hint</span>
             <Tooltip placement="top" style={{display:"block"}} isOpen={tooltipOpen} autohide={true} target="DisabledAutoHideExample" toggle={toggle}>
-                Color must be "Violet"
+                Color must be "violet"
             </Tooltip>
         </div>
     );
