@@ -69,7 +69,7 @@ class FormComp extends Component {
           alert: "Color doesn't meet 'hint' criteria"
         });
       } else {
-        this.handleSubmit();
+        this.handleSubmit(e);
       }
     } else {
       if (
@@ -80,7 +80,7 @@ class FormComp extends Component {
       ) {
         this.setState({ show: true });
       } else {
-        this.handleSubmit();
+        this.handleSubmit(e);
       }
     }
   };
