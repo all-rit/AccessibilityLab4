@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 export default {
     get: (path) => {
         return fetch(path, {credentials: 'include', method: 'GET'});

@@ -6,7 +6,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
 } from "reactstrap";
 
 const ExtraNav = props => {
@@ -17,6 +16,7 @@ const ExtraNav = props => {
   return (
     <div>
       <Navbar color="light" light expand="md">
+      {/* eslint-disable-line */}
         <NavbarBrand href="javascript:void(0);">Accessibility</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
