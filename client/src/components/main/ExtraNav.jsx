@@ -1,3 +1,4 @@
+/* eslint-disable no-script-url */
 import React, { useState } from "react";
 import {
   Collapse,
@@ -16,7 +17,6 @@ const ExtraNav = props => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        {/* // eslint-disable-next-line no-script-url */}
         <NavbarBrand href="javascript:void(0);">Accessibility</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
