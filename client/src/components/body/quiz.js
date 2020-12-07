@@ -11,7 +11,7 @@ const Reading = ({ title, description, links }) => {
 
   return (
     <div class="container">
-      <section class="page-section" style={{ paddingBottom: "25px" }}>
+      <section class="page-section" style={{ paddingBottom: "0px" }}>
         <div class="container">
           <div class="row">
             <div class="col-lg-12 text-center">
@@ -24,9 +24,6 @@ const Reading = ({ title, description, links }) => {
           </div>
         </div>
       </section>
-      {/* <div class="row">
-        Quiz questions that come from concepts throughout each part of the lab.
-      </div> */}
       <Quiz />
     </div>
   );

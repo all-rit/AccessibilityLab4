@@ -2,14 +2,18 @@
 @import "abstracts/functions";
 @import "abstracts/mixins";
 @import "vendors/reset";
+
 @import "base/base";
 @import "base/helpers";
-@import "components/App";
-@import "components/Header";
-@import "components/form";
-@import "components/Instructions";
 
-@import "components/Results";
-@import "pages/quiz";
-@import "components/Stats";
+@import "components/App";
 @import "components/Box";
+@import "components/form";
+@import "components/Header";
+@import "components/Instructions";
+@import "components/Results";
+@import "components/Stats";
+
+@import "pages/CaseStudy";
+@import "pages/quiz";
+@import "pages/Supplementary";
