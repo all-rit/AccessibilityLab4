@@ -147,8 +147,7 @@ class CodeChangeBlocks extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("Role updated as: " + this.state.textValue);
-    if (this.state.textValue === "") {
+    if (this.state.textValue === "" || null) {
       this.setState({
         message: "Please type code before updating code!",
         snackBarOpen: true
