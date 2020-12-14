@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 export const types = {
     LOGIN: '@accessibility-lab/app/login',
     LOGOUT: '@accessibility-lab/app/logout',

@@ -1,16 +1,17 @@
 import React from "react";
+import Quiz from "./../../quiz/App"
 import "./../../vendor/bootstrap/css/bootstrap.min.css";
 import "./../../css/agency.min.css";
 import "./../../css/style.css";
 
-const Quiz = ({ title, description, links }) => {
+const Reading = ({ title, description, links }) => {
   if (links === undefined) {
     links = [null, null, null];
   }
 
   return (
     <div class="container">
-      <section class="page-section" style={{ paddingBottom: "25px" }}>
+      <section class="page-section" style={{ paddingBottom: "0px" }}>
         <div class="container">
           <div class="row">
             <div class="col-lg-12 text-center">
@@ -23,11 +24,9 @@ const Quiz = ({ title, description, links }) => {
           </div>
         </div>
       </section>
-      <div class="row">
-        Quiz questions that come from concepts throughout each part of the lab.
-      </div>
+      <Quiz />
     </div>
   );
 };
 
-export default Quiz;
+export default Reading;

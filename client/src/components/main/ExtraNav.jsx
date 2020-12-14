@@ -1,3 +1,4 @@
+/* eslint-disable no-script-url */
 import React, { useState } from "react";
 import {
   Collapse,
@@ -6,7 +7,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
 } from "reactstrap";
 
 const ExtraNav = props => {
