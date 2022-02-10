@@ -13,7 +13,7 @@
     "cli-engine": "^4.7.6",
     "clsx": "^1.0.4",
     "immutability-helper": "latest",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "prismjs": "latest",
     "react": "^16.12.0",
     "react-autosize-textarea": "latest",
